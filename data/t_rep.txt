@@ -1,0 +1,53 @@
+{
+    "instructions": {
+        "A": {
+            "fd": 2,
+            "rt": null,
+            "on_stack": false,
+            "from_stack": false,
+            "color": [
+                1.0,
+                0,
+                0
+            ],
+            "wd": 1
+        },
+        "B": {
+            "fd": 2,
+            "rt": null,
+            "on_stack": false,
+            "from_stack": false,
+            "color": [
+                0,
+                0,
+                0
+            ],
+            "wd": 1
+        },
+        "[": {
+            "fd": null,
+            "rt": 30,
+            "on_stack": true,
+            "from_stack": false,
+            "color": [
+                0,
+                0,
+                0
+            ],
+            "wd": 1
+        },
+        "]": {
+            "fd": null,
+            "rt": -30,
+            "on_stack": false,
+            "from_stack": true,
+            "color": [
+                0,
+                0,
+                0
+            ],
+            "wd": 1
+        }
+    },
+    "keys": "AB[]"
+}
