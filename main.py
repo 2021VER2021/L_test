@@ -7,7 +7,7 @@ S = "A"
 stack = []
 pos_stack = []
 
-N = 7
+N = 5
 
 instructions = data_reading.get_instructions('plant.txt')
 

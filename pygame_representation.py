@@ -12,9 +12,10 @@ pg.init()
 WIDTH = HEIGHT = 750
 
 stack = []
-
-def on_screen(screen, S:str, instructions, init_values):
+# TODO scale - ? ; more parametrs, mb functions?
+def on_screen(screen, S:str, instructions, init_values, scale):
     curr_state = init_values
+    stack = []
     for chr in S:
         if chr in instructions['keys']:
             instr = instructions['instructions'][chr]
@@ -26,23 +27,29 @@ def on_screen(screen, S:str, instructions, init_values):
             if instr['fd'] != None:
                 pg.draw.line(screen, instr['color'],
                             curr_state['pos'],
-                            (curr_state['pos'][0] + np.cos(np.pi*curr_state['angle']/180)*instr['fd'],
-                            curr_state['pos'][1] + np.sin(np.pi*curr_state['angle']/180)*instr['fd']),
+                            (curr_state['pos'][0] + scale*np.cos(np.pi*curr_state['angle']/180)*instr['fd'],
+                            curr_state['pos'][1] + scale*np.sin(np.pi*curr_state['angle']/180)*instr['fd']),
                             int(instr['wd']*curr_state['wp']))
-                curr_state['pos'] = (curr_state['pos'][0] + np.cos(np.pi*curr_state['angle']/180)*instr['fd'],
-                                    curr_state['pos'][1] + np.sin(np.pi*curr_state['angle']/180)*instr['fd'])
+                curr_state['pos'] = (curr_state['pos'][0] + scale*np.cos(np.pi*curr_state['angle']/180)*instr['fd'],
+                                    curr_state['pos'][1] + scale*np.sin(np.pi*curr_state['angle']/180)*instr['fd'])
             if instr['rt'] != None:
-                curr_state['angle'] += instr['rt']
-            curr_state['fp'] *= 1
-            curr_state['wp'] *= 0.99
+                curr_state['angle'] += scale*instr['rt']
+            curr_state['fp'] *= 0.99
+            curr_state['wp'] *= 0.97
 
 def draw(S, instructions, init_values= {'pos':[HEIGHT/2, WIDTH], 'angle':-90, 'color':(0, 0, 0), 'fp':1, 'wp':1}):
+    scale = 0.1
     scr = pg.display.set_mode((WIDTH, HEIGHT))
-    scr.fill((255, 255, 255))
-    on_screen(scr, S, instructions, init_values)
     isRunning = True
-    Pause = False
+    Pause = True
     while isRunning:
+        if not(Pause):
+            scr.fill((255, 255, 255))
+            on_screen(scr, S, instructions, copy.deepcopy(init_values), scale)
+            scale = scale + 0.01
+            pg.display.flip()
+        if scale > 1:
+            Pause = True
         for event in pg.event.get():
             if event.type == pg.QUIT:  
                 isRunning = False
@@ -50,8 +57,7 @@ def draw(S, instructions, init_values= {'pos':[HEIGHT/2, WIDTH], 'angle':-90, 'c
                 # checking if key "A" was pressed
                 if event.key == pg.K_SPACE:
                     Pause = not(Pause)
-                    pg.time.delay(100)
-        pg.display.flip()  
+                    pg.time.delay(100)  
         pg.time.delay(1000//FPS)
     pg.quit()
 

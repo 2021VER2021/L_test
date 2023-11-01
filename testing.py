@@ -1,6 +1,6 @@
 import os
 import json
-S_LENGTH = 3
+S_LENGTH = 10
 S_ANGLE = 25
 S_WIDTH = 10
 # data representation: X → F+[[X]-X]-F[-FX]+X

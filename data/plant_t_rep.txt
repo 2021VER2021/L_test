@@ -13,7 +13,7 @@
             "wd": 10
         },
         "B": {
-            "fd": 3,
+            "fd": 10,
             "rt": null,
             "on_stack": false,
             "from_stack": false,
