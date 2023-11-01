@@ -1,6 +1,8 @@
 import turtle
+import data_reading
+import parse_instructions
 
-S = "0"
+S = "A"
 stack = []
 pos_stack = []
 
@@ -8,31 +10,22 @@ N = 8
 
 turtle.speed(100)
 
-def func(a):
-    if a == "1":
-            return "11"
-    if a == "0":
-         return "1[0]0"
-    if a == "[":
-         return "["
-    if a == "]":
-         return "]"
-
+instructions = data_reading.get_instructions('pythagoras.txt')
 
 for i in range(N):
-    S = list(map(lambda i: func(i) , S))
-    S = ''.join(S)
+    S = parse_instructions.parse(S, instructions)
 
-print(S)
+#print(S)
+
 length = 1
 angle = 0
 turtle.penup()
 turtle.goto(-200, 0)
 turtle.pendown()
 for i in S:
-    if i == '1':
+    if i == 'B':
         turtle.forward(length)
-    if i == '0':
+    if i == 'A':
         turtle.forward(length)
     if i == '[':
         stack.append(angle)
