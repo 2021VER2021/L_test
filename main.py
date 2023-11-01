@@ -1,22 +1,22 @@
 import data_reading
 import parse_instructions
 import turtle_representation
+import pygame_representation
 
 S = "A"
 stack = []
 pos_stack = []
 
-N = 6
+N = 7
 
-instructions = data_reading.get_instructions('pythagoras.txt')
+instructions = data_reading.get_instructions('plant.txt')
 
 for i in range(N):
     S = parse_instructions.parse(S, instructions)
 
 #print(S)
 
-turtle_representation.draw(S, data_reading.get_instructions('t_rep.txt'))
-a = input()
-
+pygame_representation.draw(S, data_reading.get_instructions('plant_t_rep.txt'))
+ 
 
 

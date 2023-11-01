@@ -1,19 +1,19 @@
 {
     "instructions": {
         "A": {
-            "fd": 2,
+            "fd": null,
             "rt": null,
             "on_stack": false,
             "from_stack": false,
             "color": [
-                1.0,
+                255,
                 0,
                 0
             ],
             "wd": 10
         },
         "B": {
-            "fd": 2,
+            "fd": 3,
             "rt": null,
             "on_stack": false,
             "from_stack": false,
@@ -26,7 +26,7 @@
         },
         "[": {
             "fd": null,
-            "rt": 30,
+            "rt": null,
             "on_stack": true,
             "from_stack": false,
             "color": [
@@ -38,7 +38,7 @@
         },
         "]": {
             "fd": null,
-            "rt": -30,
+            "rt": null,
             "on_stack": false,
             "from_stack": true,
             "color": [
@@ -47,7 +47,31 @@
                 0
             ],
             "wd": 10
+        },
+        "-": {
+            "fd": null,
+            "rt": 25,
+            "on_stack": false,
+            "from_stack": false,
+            "color": [
+                0,
+                0,
+                0
+            ],
+            "wd": 10
+        },
+        "+": {
+            "fd": null,
+            "rt": -25,
+            "on_stack": false,
+            "from_stack": false,
+            "color": [
+                0,
+                0,
+                0
+            ],
+            "wd": 10
         }
     },
-    "keys": "AB[]"
+    "keys": "AB[]+-"
 }

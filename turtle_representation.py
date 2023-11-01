@@ -8,8 +8,8 @@ def update(curr_state, pos, angle, color):
     curr_state['pos'] = pos
     curr_state['angle'] = angle
     curr_state['color'] = color
-    curr_state['fp'] *= 1.01
-    curr_state['wp'] *= 1
+    curr_state['fp'] *= 0.99
+    curr_state['wp'] *= 1.01
     return curr_state
 
 
