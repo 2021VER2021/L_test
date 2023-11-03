@@ -6,12 +6,12 @@ S_WIDTH = 10
 # data representation: X → F+[[X]-X]-F[-FX]+X
 file_name = "data\\plant.txt"
 file_name_2 = "data\\plant_t_rep.txt"
-lol = json.dumps({'instructions': { 'A':{'fd' : None, 'rt' : None, 'on_stack' : False, 'from_stack' : False, 'color' : (255, 0, 0), 'wd' : S_WIDTH},
-                                    'B':{'fd' : S_LENGTH, 'rt' : None, 'on_stack' : False, 'from_stack' : False, 'color' : (0, 0, 0), 'wd' : S_WIDTH},
-                                    '[':{'fd' : None, 'rt' : None, 'on_stack' : True, 'from_stack' : False, 'color' : (0, 0, 0), 'wd' : S_WIDTH},
-                                    ']':{'fd' : None, 'rt' : None, 'on_stack' : False, 'from_stack' : True, 'color' : (0, 0, 0), 'wd' : S_WIDTH},
-                                    '-':{'fd' : None, 'rt' : S_ANGLE, 'on_stack' : False, 'from_stack' : False, 'color' : (0, 0, 0), 'wd' : S_WIDTH},
-                                    '+':{'fd' : None, 'rt' : -S_ANGLE, 'on_stack' : False, 'from_stack' : False, 'color' : (0, 0, 0), 'wd' : S_WIDTH}},
+lol = json.dumps({'instructions': { 'A':{'color' : (255, 0, 0), 'wd' : S_WIDTH, 'rnd' : True},
+                                    'B':{'fd' : S_LENGTH,'color' : (0, 0, 0), 'wd' : S_WIDTH},
+                                    '[':{'on_stack' : True, 'from_stack' : False, 'color' : (0, 0, 0), 'wd' : S_WIDTH},
+                                    ']':{'on_stack' : False, 'from_stack' : True, 'color' : (0, 0, 0), 'wd' : S_WIDTH},
+                                    '-':{'rt' : S_ANGLE, 'color' : (0, 0, 0), 'wd' : S_WIDTH},
+                                    '+':{'rt' : -S_ANGLE, 'color' : (0, 0, 0), 'wd' : S_WIDTH}},
 
                   'keys' : 'AB[]+-'}, indent=4)
 

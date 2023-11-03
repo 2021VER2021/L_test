@@ -4,19 +4,17 @@ import turtle_representation
 import pygame_representation
 
 S = "A"
-stack = []
-pos_stack = []
 
 N = 5
 
-instructions = data_reading.get_instructions('plant.txt')
+instructions = data_reading.get_instructions('pythagoras.txt')
 
 for i in range(N):
     S = parse_instructions.parse(S, instructions)
 
 #print(S)
 
-pygame_representation.draw(S, data_reading.get_instructions('plant_t_rep.txt'))
+pygame_representation.draw(S, data_reading.get_instructions('t_rep.txt'))
  
 
 

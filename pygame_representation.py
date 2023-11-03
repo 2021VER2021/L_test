@@ -2,6 +2,7 @@ import pygame as pg
 import numpy as np
 import json
 import copy
+import pygame_actions
 
 FPS = 30
 TIME_CONST = 1/FPS
@@ -9,33 +10,29 @@ TIME_CONST = 1/FPS
 #pygame things
 pg.init()
 
-WIDTH = HEIGHT = 750
+WIDTH = HEIGHT = 600
 
-stack = []
+stack = pygame_actions.init_stack()
 # TODO scale - ? ; more parametrs, mb functions?
 def on_screen(screen, S:str, instructions, init_values, scale):
     curr_state = init_values
-    stack = []
+    list.clear(stack)
     for chr in S:
         if chr in instructions['keys']:
             instr = instructions['instructions'][chr]
-            if instr['on_stack']:
-                stack.append(copy.deepcopy(curr_state))
-            if instr['from_stack']:
-                #print(curr_state)
-                curr_state = stack.pop(-1)
-            if instr['fd'] != None:
-                pg.draw.line(screen, instr['color'],
-                            curr_state['pos'],
-                            (curr_state['pos'][0] + scale*np.cos(np.pi*curr_state['angle']/180)*instr['fd'],
-                            curr_state['pos'][1] + scale*np.sin(np.pi*curr_state['angle']/180)*instr['fd']),
-                            int(instr['wd']*curr_state['wp']))
-                curr_state['pos'] = (curr_state['pos'][0] + scale*np.cos(np.pi*curr_state['angle']/180)*instr['fd'],
-                                    curr_state['pos'][1] + scale*np.sin(np.pi*curr_state['angle']/180)*instr['fd'])
-            if instr['rt'] != None:
-                curr_state['angle'] += scale*instr['rt']
-            curr_state['fp'] *= 0.99
-            curr_state['wp'] *= 0.97
+            instr_keys = dict.keys(instr)
+            if 'on_stack' in instr_keys and instr['on_stack']:
+                pygame_actions.on_stack(stack, curr_state)
+            if 'from_stack' in instr_keys and instr['from_stack']:
+                curr_state = pygame_actions.from_stack(stack)
+            if 'color' in instr_keys:
+                pygame_actions.simple_set_color(instr['color'], curr_state)
+            if 'fd' in instr_keys and instr['fd'] != None:
+                pygame_actions.scale_draw_line(screen, instr['fd'], instr['wd'], curr_state, scale)
+            if 'rt' in instr_keys and instr['rt'] != None:
+                pygame_actions.scale_set_angle(instr['rt'], curr_state, scale)
+            curr_state['fp'] *= 1.2
+            curr_state['wp'] *= 0.99
 
 def draw(S, instructions, init_values= {'pos':[HEIGHT/2, WIDTH], 'angle':-90, 'color':(0, 0, 0), 'fp':1, 'wp':1}):
     scale = 0.1

@@ -2,11 +2,10 @@
     "instructions": {
         "A": {
             "fd": 2,
-            "rt": null,
             "on_stack": false,
             "from_stack": false,
             "color": [
-                1.0,
+                1,
                 0,
                 0
             ],
@@ -14,7 +13,6 @@
         },
         "B": {
             "fd": 2,
-            "rt": null,
             "on_stack": false,
             "from_stack": false,
             "color": [
@@ -25,7 +23,6 @@
             "wd": 10
         },
         "[": {
-            "fd": null,
             "rt": 30,
             "on_stack": true,
             "from_stack": false,
@@ -37,7 +34,6 @@
             "wd": 10
         },
         "]": {
-            "fd": null,
             "rt": -30,
             "on_stack": false,
             "from_stack": true,
